@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonIQ - Carbon Footprint Analytics</title>
+    <link rel="stylesheet" href="stylescal.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">CarbonIQ</div>
+        <div class="nav-links">
+            <a href="#Home">Home</a>
+            <a href="#inputs">Data Input</a>
+            <a href="#results">results</a>
+            <a href="#recommendations">Recommendations</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Input Section -->
+        <section id="inputs" class="section">
+            <h2>Data Inputs</h2>
+            <div class="input-grid">
+                <!-- Coal Type & Quality -->
+                <div class="input-group">
+                    <h3>Coal Type & Quality</h3>
+                    <div class="input-fields">
+                        <input type="number" id="calorificValue" placeholder="Calorific Value (kcal/kg)">
+                        <input type="number" id="sulfurContent" placeholder="Sulfur Content (%)">
+                        <input type="number" id="moistureContent" placeholder="Moisture Content (%)">
+                        <input type="number" id="ashContent" placeholder="Ash Content (%)">
+                    </div>
+                </div>
+
+                <!-- Mining Data -->
+                <div class="input-group">
+                    <h3>Mining Data</h3>
+                    <div class="input-fields">
+                        <input type="text" id="mineLocation" placeholder="Mine Location">
+                        <input type="number" id="coalProduction" placeholder="Production (tons/month)">
+                        <select id="miningMethod">
+                            <option value="">Select Mining Method</option>
+                            <option value="surface">Surface Mining</option>
+                            <option value="underground">Underground Mining</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Energy Consumption -->
+                <div class="input-group">
+                    <h3>Energy Consumption</h3>
+                    <div class="input-fields">
+                        <input type="number" id="electricityUsage" placeholder="Electricity Usage (kWh)">
+                        <input type="number" id="fuelUsage" placeholder="Fuel Usage (L)">
+                        <input type="number" id="renewablePercentage" placeholder="Renewable Energy (%)">
+                    </div>
+                </div>
+
+                <!-- Transportation Data -->
+                <div class="input-group">
+                    <h3>Transportation Data</h3>
+                    <div class="input-fields">
+                        <select id="transportMode">
+                            <option value="">Select Transport Mode</option>
+                            <option value="rail">Rail</option>
+                            <option value="road">Road</option>
+                            <option value="sea">Sea</option>
+                        </select>
+                        <input type="number" id="distance" placeholder="Distance (km)">
+                        <input type="number" id="transportFuel" placeholder="Transport Fuel (L)">
+                    </div>
+                </div>
+            </div>
+
+            <button id="calculateBtn" class="primary-btn">Calculate Carbon Footprint</button>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="section">
+            <h2>Carbon Footprint Analysis</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Total Emissions</h3>
+                    <div id="totalEmissions" class="metric">0</div>
+                    <p>Tons CO₂e/month</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Carbon Intensity</h3>
+                    <div id="carbonIntensity" class="metric">0</div>
+                    <p>kg CO₂e/ton of coal</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Emission Reduction</h3>
+                    <div id="emissionReduction" class="metric">0%</div>
+                    <p>vs. Previous Month</p>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart">
+                    <canvas id="emissionsChart"></canvas>
+                </div>
+                <div class="chart">
+                    <canvas id="sourcesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h3>Recommendations</h3>
+                <ul id="recommendationsList">
+                    <!-- Populated by JavaScript -->
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CarbonIQ. All rights reserved.</p>
+    </footer>
+    <section id="recommendations">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js"></script>
+    </section>
+    </section>
+</body>
+
+</html>

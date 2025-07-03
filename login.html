@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonIQ - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login to CarbonIQ</h2>
+            <form id="loginForm" onsubmit="event.preventDefault(); login();">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: username, password: password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem("authToken", data.token);  // Store the JWT token
+                    window.location.href = "userDashboard.html"; // Redirect to dashboard
+                } else {
+                    alert("Invalid credentials!");
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert("An error occurred during login.");
+            }
+        }
+    </script>
+</body>
+
+</html>

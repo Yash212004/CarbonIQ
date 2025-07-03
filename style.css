@@ -1,0 +1,314 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f9f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* Header Styles */
+header {
+    background-color: #012441;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+header:hover {
+    background-color: #02355f;
+}
+
+header .logo {
+    font-size: 35px;
+    font-weight: 850;
+    color: white;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero Section Styles */
+.hero {
+    background: linear-gradient(180deg, #012441, #355c35);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.hero .hero-btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.hero-btn:hover{
+    background-color: #02355f;
+}
+
+.services {
+    padding: 1% 0;
+    background: linear-gradient(180deg, #355c35,#012441);}
+
+.services h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+.service-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card h3 {
+    font-size: 24px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 18px;
+    color: #444;
+}
+
+/* Calculator Section */
+.calculator {
+    padding: 60px 0;
+    background-color: #e8f5e9;
+}
+
+.calculator h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #2e7d32;
+}
+
+.calculator form {
+    width: 50%;
+    margin: auto;
+}
+
+.calculator form label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.calculator form input,
+.calculator form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.calculator form input[type="submit"] {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.calculator form input[type="submit"]:hover {
+    background-color: #1b5e20;
+}
+
+/* Flashcards Section */
+.flashcards {
+    background-color: #fff;
+    padding: 50px 0;
+}
+
+.flashcards h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.flashcard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.flashcard {
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+
+.flashcard h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.flashcard p {
+    font-size: 18px;
+}
+
+
+/*dashboard*/
+.dashboard{
+    text-align:justify;
+    padding-left:30%;
+    padding-right:30%;
+}
+
+
+/* Statistics Section */
+.statistics {
+    padding: 60px 0;
+    background-color: #f4f9f4;
+}
+
+.chart-container {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.statistics h2 {
+    font-size: 36px;
+    text-align: center;
+    color: #2e7d32;
+}
+
+.statistics h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Map Section */
+#mineMap {
+    height: 300px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+#map h2{
+    padding: 20px;
+    text-align: center;
+}
+
+/* Dark Mode Toggle */
+#toggle-dark-mode {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode header {
+    background-color: #1b1b1b;
+}
+
+.dark-mode .calculator,
+.dark-mode .statistics,
+.dark-mode .features,
+.dark-mode footer {
+    background-color: #444;
+    color: white;
+}
+
+/* Footer Section */
+footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Button & Link Hover Styles */
+button:hover {
+    background-color: #3380CC;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #FFCE56;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form input, form button {
+        width: 100%;
+    }
+}

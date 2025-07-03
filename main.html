@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonIQ</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Add basic styles for the map */
+        #mineMap {
+            height: 400px;
+            /* Set the height of the map */
+            width: 100%;
+            /* Set the width of the map to fill its container */
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Additional dark mode styles can be added here */
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">🌿 CarbonIQ</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="cal.html">Calculator</a></li>
+                    <li><a href="#map">Coal Mine Locations</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Empowering Indian Coal Mines Towards Carbon Neutrality</h1>
+            <p>Measure, Analyze, and Optimize Your Mine's Carbon Footprint with Our Comprehensive Web-Based Solution.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-box">
+                <div class="service-card">
+                    <h3>Carbon Emission Tracking</h3>
+                    <p>Monitor your mine’s carbon emissions in real-time and track historical data to identify areas for
+                        improvement.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Carbon Footprint Calculator</h3>
+                    <p>Calculate emissions based on energy usage, transportation, and other factors, providing tailored
+                        emission reduction pathways.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Actionable Insights & Solutions</h3>
+                    <p>Receive tailored recommendations to minimize emissions, adopt sustainable practices, and work
+                        towards carbon neutrality.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Compliance Monitoring</h3>
+                    <p>Ensure that your mine complies with environmental regulations and contribute towards India's
+                        carbon reduction goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flashcards Section (NEW) -->
+    <section class="flashcards" id="flashcards">
+        <div class="container">
+            <h2>Know more about Indian Coal Mines</h2>
+            <div class="flashcard-container">
+                <div class="flashcard">
+                    <h3>Largest Coal Producer</h3>
+                    <p>India is the second-largest coal producer globally, after China. In 2023, it produced over 850 million metric tons of coal.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Major Coal Reserves</h3>
+                    <p>India's coal reserves are primarily found in the eastern and central states, with Jharkhand, Odisha, Chhattisgarh, West Bengal, and Madhya Pradesh as key producers.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Types of Coal</h3>
+                    <p>The majority of India's coal is thermal coal used for electricity generation, with smaller quantities of metallurgical coal for steel production.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Coal India Limited (CIL)</h3>
+                    <p>Coal India Limited is the largest coal-producing company in the world, contributing around 80% of India's domestic coal production.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Imports and Exports</h3>
+                    <p>India imports coal, especially coking coal for steel production. Australia and Indonesia are key suppliers, and exports are minimal.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Mining Methods</h3>
+                    <p>India mainly uses open-cast mining, with underground mining contributing less to total production.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Electricity Generation</h3>
+                    <p>Coal powers around 70% of India's electricity generation, with demand increasing due to energy needs.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Environmental Impact</h3>
+                    <p>Coal mining and burning contribute to air pollution and greenhouse gas emissions, prompting discussions on transitioning to renewable energy.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Monetization of Coal Blocks</h3>
+                    <p>Since 2020, India has auctioned coal blocks to private companies, transitioning from public sector dominance.</p>
+                </div>
+                <div class="flashcard">
+                    <h3>Employment</h3>
+                    <p>The coal industry provides jobs for millions of workers in mining operations, logistics, and power generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section for Mine Locations -->
+    <section class="map" id="map">
+        <div class="container">
+            <h2>Coal Mine Locations</h2>
+            <div id="mineMap"></div> <!-- Map container -->
+        </div>
+    </section>
+
+    <!-- Dark Mode Toggle -->
+    <button id="toggle-dark-mode">Toggle Dark Mode</button>
+
+    <!-- Footer Section -->
+    <section id="contact">
+        <footer>
+            <div class="container">
+                <p>© 2024 CarbonIQ. All rights reserved.</p>
+            </div>
+        </footer>
+    </section>
+
+    <!-- Chart.js and Map Script -->
+    <script>
+        // Leaflet Map for Coal Mine Locations
+        var map = L.map('mineMap').setView([20.5937, 78.9629], 5);  // Set to India's coordinates
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Sample markers for coal mine locations
+        var markers = [
+            { location: [22.5726, 88.3639], name: "Kolkata Coal Mine", emissionLevel: "High" },
+            { location: [19.0760, 72.8777], name: "Mumbai Coal Mine", emissionLevel: "Medium" },
+            { location: [23.2599, 77.4126], name: "Bhopal Coal Mine", emissionLevel: "Low" },
+            { location: [26.4499, 80.3319], name: "Lucknow Coal Mine", emissionLevel: "Medium" },
+            { location: [28.6139, 77.2090], name: "Delhi Coal Mine", emissionLevel: "High" }
+        ];
+
+        // Add markers to the map
+        markers.forEach(marker => {
+            L.marker(marker.location)
+                .addTo(map)
+                .bindPopup(`<b>${marker.name}</b><br>Emission Levels: ${marker.emissionLevel}`);
+        });
+
+        // Toggle Dark Mode
+        const toggleButton = document.getElementById('toggle-dark-mode');
+        toggleButton.addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonIQ - User Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome to CarbonIQ!</h2>
+        <button id="logoutBtn">Logout</button>
+        <h3>Your Saved Data</h3>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Inputs</th>
+                    <th>Outputs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Saved data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadData() {
+            const token = localStorage.getItem('authToken');
+            
+            if (!token) {
+                alert('You need to login first!');
+                window.location.href = 'login.html'; // Redirect to login page
+                return;
+            }
+
+            try {
+                const response = await fetch('/getData', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const savedData = await response.json();
+                    const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+
+                    savedData.forEach(entry => {
+                        const row = tableBody.insertRow();
+                        row.insertCell(0).innerText = new Date(entry.date).toLocaleDateString();
+                        row.insertCell(1).innerText = JSON.stringify(entry.inputs);
+                        row.insertCell(2).innerText = JSON.stringify(entry.outputs);
+                    });
+                } else {
+                    alert('Failed to load data.');
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            localStorage.removeItem('authToken'); // Clear token on logout
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+
+        window.onload = loadData; // Load data when the dashboard is loaded
+    </script>
+</body>
+
+</html>
